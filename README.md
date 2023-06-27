@@ -1,3 +1,12 @@
+# Leventhal Map & Education Center 2023 Teaching Portal Rebuild
+
+### Dev deployment
+
+Deployed to Netlify at <https://lmec-teaching-portal-dev.netlify.app>
+
+
+---
+
 # Astro Starter Kit: Basics
 
 ```
