@@ -13,7 +13,10 @@ export default defineConfig({
       accessToken: PUBLIC_STORYBLOK_ACCESS_TOKEN,
       apiOptions: {
         region: "us",
-      }
+      },
+      components: {
+        'lesson-plan': 'storyblok/LessonPlan',
+      },
     }),
     tailwind(),
   ],

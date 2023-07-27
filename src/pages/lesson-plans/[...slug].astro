@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useStoryblokApi } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+ 
+export async function getStaticPaths() {
+  const storyblokApi = useStoryblokApi()
+ 
+  const { data } = await storyblokApi.get('cdn/stories', {
+    version: 'draft',
+  })
+  let stories = data.stories
+  stories = Object.values(stories)
+
+  return stories.map((story) => {
+    return {
+      params: {
+        slug: story.slug,
+      },
+    }
+  })
+}
+ 
+const { slug } = Astro.params
+ 
+const storyblokApi = useStoryblokApi()
+ 
+const { data } = await storyblokApi.get(
+  `cdn/stories/teaching-portal/${slug}`,
+  {
+    version: 'draft',
+  }
+)
+ 
+const story = data.story
+---
+
+<Layout title={`${story.content.title} - Leventhal Map & Education Center at the Boston Public Library`}>
+	<main>
+		<StoryblokComponent blok={story.content} />
+  </main>
+</Layout>
