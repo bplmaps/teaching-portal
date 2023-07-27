@@ -13,7 +13,7 @@ stories = Object.values(stories)
 stories = stories.map((story) => {
   return {
     params: {
-      title: story.content.title,
+      name: story.name,
       slug: story.slug,
       thumbnail: story.content.thumbnail,
     },
@@ -38,7 +38,7 @@ stories = stories.map((story) => {
           />
         }
         <span class="block font-bold text-lg p-5">
-          {story.params.title}
+          {story.params.name}
         </span>
       </a>
     </li>

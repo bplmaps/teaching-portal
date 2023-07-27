@@ -4,7 +4,12 @@ import { JSDOM } from 'jsdom';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 
-const { blok } = Astro.props
+export interface Props {
+	name: string;
+	blok: object;
+}
+
+const { name, blok } = Astro.props
 const window = new JSDOM('').window;
 const purify = DOMPurify(window);
 
@@ -19,7 +24,7 @@ const body = renderRichText(blok.body)
 <div {...storyblokEditable(blok)}>
   <header class="border-b-2 pb-6 mb-6 border-black/10 lg:flex lg:gap-10">
     <div class="lg:w-2/3">
-      <h1 class="text-4xl font-bold mb-6">{blok.title}</h1>
+      <h1 class="text-4xl font-bold mb-6">{name}</h1>
 
       <span class="inline-flex items-center rounded-md bg-regal-900 px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-regal-900/10">Lesson plan</span>
       {blok.learning_levels &&

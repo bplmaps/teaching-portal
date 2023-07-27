@@ -35,8 +35,6 @@ const { data } = await storyblokApi.get(
 const story = data.story
 ---
 
-<Layout title={`${story.content.title} - Leventhal Map & Education Center at the Boston Public Library`}>
-	<main>
-		<StoryblokComponent blok={story.content} />
-  </main>
+<Layout title={`${story.name} - Leventhal Map & Education Center at the Boston Public Library`}>
+  <StoryblokComponent name={story.name} blok={story.content} />
 </Layout>
