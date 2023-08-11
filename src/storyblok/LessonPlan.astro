@@ -1,5 +1,6 @@
 ---
 import { storyblokEditable, renderRichText } from '@storyblok/astro';
+import RichTextRenderer from "@storyblok/astro/RichTextRenderer.astro";
 import { JSDOM } from 'jsdom';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
@@ -71,7 +72,7 @@ const body = renderRichText(blok.body)
       </div>
     }
     <div class="prose mt-6">
-      <Fragment set:html={body}/>
+      <RichTextRenderer richTextData={blok.body} />
     </div>
   </div>
 </div>

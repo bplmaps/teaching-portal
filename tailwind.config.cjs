@@ -23,6 +23,8 @@ module.exports = {
                 DEFAULT: {
                     css: [
 						{
+							maxWidth: theme('maxWidth.3xl'),
+							color: theme('colors.gray[900]'),
 							'--tw-prose-body': theme('colors.gray[900]'),
 							'--tw-prose-headings': theme('colors.gray[900]'),
 							'--tw-prose-lead': theme('colors.gray[900]'),

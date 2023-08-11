@@ -1,0 +1,16 @@
+---
+import { storyblokEditable, renderRichText } from '@storyblok/astro';
+import IiifViewer from "../components/iiifViewer/iiifViewer.astro";
+
+export interface Props {
+	blok: object;
+}
+
+const { blok } = Astro.props
+
+const url = blok.url?.url
+---
+
+<div {...storyblokEditable(blok)}>
+  <IiifViewer iiifType="manifest" endpointUrl={url} />
+</div>

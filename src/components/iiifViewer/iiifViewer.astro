@@ -1,0 +1,47 @@
+---
+import IiifImageViewer from "./iiifImageViewer.svelte";
+
+interface Props {
+    iiifType: string;
+    endpointUrl: string;
+}
+
+const { iiifType = "manifest", endpointUrl } = Astro.props;
+let imageEndpointArray = new Array;
+let title;
+let creator;
+let date;
+
+if (iiifType === "image") {
+    imageEndpointArray[0] = endpointUrl;
+} else if (iiifType === "manifest") {
+    await fetch(endpointUrl + '/manifest.json')
+        .then((d) => d.json())
+        .then((manifestJson) => {
+            manifestJson.sequences.forEach((s) => {
+                s.canvases.forEach((c) => {
+                    c.images.forEach((i) => {
+                        imageEndpointArray.push(i.resource.service['@id']);
+                    });
+                });
+            });
+
+            title = manifestJson.metadata.filter(d=>d.label=="Title").shift()?.value;
+            creator = manifestJson.metadata.filter(d=>d.label=="Creator").shift()?.value;
+            date = manifestJson.metadata.filter(d=>d.label=="Date").shift()?.value;
+            `metadata.filter(d=>d.label=="Date")`
+        });
+}
+---
+
+<figure class="not-prose bg-gray-50 rounded-md overflow-hidden ring-1 ring-inset ring-gray-500/10">
+    <IiifImageViewer imageEndpointArray={imageEndpointArray} client:only="svelte" />
+    <figccaption class="flex items-center px-4 py-2">
+        <div class="flex-grow">
+            <h3 class="text-xl font-bold">{title}</h3>
+            <h4>{creator} - {date}</h4>
+        </div>
+        <a href="url" class="flex-shrink-0 rounded-md bg-regal-900 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-regal-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-regal-900">Visit collection page</a>
+    </figcaption>
+</figure>
+
