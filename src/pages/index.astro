@@ -30,13 +30,15 @@ stories = stories.map((story) => {
         class="block rounded-xl overflow-hidden w-full shadow-md transition-shadow duraiton-300 hover:shadow-xl"
         href={`/lesson-plans/${story.params.slug}`}
       >
-        {story.params.thumbnail &&
-          <img
-            class="block w-full aspect-video object-cover object-center"
-            src={story.params.thumbnail?.filename}
-            alt={story.params.thumbnail?.alt}
-          />
-        }
+        <div class="relative w-full aspect-video bg-black">
+          {story.params.thumbnail?.filename &&
+            <img
+              class="absolute inset-0 w-full h-full object-cover object-center"
+              src={story.params.thumbnail?.filename}
+              alt={story.params.thumbnail?.alt}
+            />
+          }
+        </div>
         <span class="block font-bold text-lg p-5">
           {story.params.name}
         </span>
