@@ -1,6 +1,6 @@
 <header class="bg-white">
   <nav class="container px-5 mx-auto max-w-screen-xl flex items-center justify-between gap-x-6 p-6" aria-label="Global">
-    <div class="flex flex-col items-start lg:flex-1">
+    <div class="flex flex-col items-start -my-2 lg:flex-1">
       <a href="https://www.leventhalmap.org/" target="_blank" class="-m-1.5 p-1.5 text-xs uppercase font-bold">
         Leventhal Map & Ed Center
       </a>
@@ -21,8 +21,8 @@
       </a>
       <a href="https://www.leventhalmap.org/" target="_blank" class="rounded-md bg-regal-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-regal-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-regal-900">LMEC Home</a>
     </div>
-    <div class="flex lg:hidden">
-      <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+    <div class="nav-toggle flex lg:hidden">
+      <button type="button" class="-m-2.5 w-12 h-12 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
         <span class="sr-only">Open main menu</span>
         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -31,7 +31,7 @@
     </div>
   </nav>
   <!-- Mobile menu, show/hide based on menu open state. -->
-  <div class="lg:hidden" role="dialog" aria-modal="true">
+  <div class="nav hidden lg:hidden" role="dialog" aria-modal="true">
     <!-- Background backdrop, show/hide based on slide-over state. -->
     <div class="fixed inset-0 z-10"></div>
     <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -43,7 +43,7 @@
           </svg>
         </a>
         <a href="https://www.leventhalmap.org/" target="_blank" class="ml-auto rounded-md bg-regal-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-regal-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-regal-900">LMEC Home</a>
-        <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+        <button type="button" class="nav-close -m-2.5 w-12 h-12 inline-flex items-center justify-center  p-2.5 text-gray-700">
           <span class="sr-only">Close menu</span>
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -61,3 +61,13 @@
     </div>
   </div>
 </header>
+
+<script>
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('.nav').classList.toggle('hidden');
+  });
+
+  document.querySelector('.nav-close').addEventListener('click', () => {
+    document.querySelector('.nav').classList.add('hidden');
+  });
+</script>
