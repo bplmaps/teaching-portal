@@ -1,0 +1,10 @@
+---
+export interface Props {
+	className: string;
+	title: string;
+}
+
+const { className, title } = Astro.props;
+---
+
+<span class={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${className}`}>{title}</span>

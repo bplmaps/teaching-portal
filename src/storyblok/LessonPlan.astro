@@ -4,6 +4,9 @@ import RichTextRenderer from "@storyblok/astro/RichTextRenderer.astro";
 import { JSDOM } from 'jsdom';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
+import PageHeading from '../components/PageHeading.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Pill from '../components/Pill.astro';
 
 export interface Props {
 	name: string;
@@ -25,13 +28,12 @@ const body = renderRichText(blok.body)
 <div {...storyblokEditable(blok)}>
   <header class="border-b-2 pb-6 mb-6 border-black/10 lg:flex lg:gap-10">
     <div class="lg:w-2/3">
-      <h1 class="text-4xl font-bold mb-6">{name}</h1>
-
-      <span class="inline-flex items-center rounded-md bg-regal-900 px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-regal-900/10">Lesson plan</span>
+      <PageHeading title={name} />
+      <Pill className="ring-regal-900/10 bg-regal-900 text-white" title="Lesson plan" />
       {blok.learning_levels &&
         <div class="flex flex-wrap gap-1.5 mt-3">
           {blok.learning_levels.map(learning_level => (
-            <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">{learning_level}</span>
+            <Pill className="ring-gray-500/10 bg-gray-50 text-gray-600" title={learning_level} />
           ))}
         </div>
       }
@@ -54,19 +56,19 @@ const body = renderRichText(blok.body)
       </div>
     }
     {lessonObjectives &&
-      <h2 class="text-2xl font-bold mt-6 mb-2">Lesson objectives</h2>
+      <SectionHeading title="Lesson objectives" />
       <div class="prose">
         <Fragment set:html={lessonObjectives}/>
       </div>
     }
     {essentialQuestions &&
-      <h2 class="text-2xl font-bold mt-6 mb-2">Essential questions</h2>
+      <SectionHeading title="Essential questions" />
       <div class="prose">
         <Fragment set:html={essentialQuestions}/>
       </div>
     }
     {curriculumStandards &&
-      <h2 class="text-2xl font-bold mt-6 mb-2">Curriculum standards</h2>
+      <SectionHeading title="Curriculum standards" />
       <div class="prose">
         <Fragment set:html={curriculumStandards}/>
       </div>

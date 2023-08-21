@@ -1,0 +1,27 @@
+---
+export interface Props {
+	thumbnail: object;
+	name: string;
+	href: string;
+}
+
+const { thumbnail, name, href } = Astro.props;
+---
+
+<a
+  class="block rounded-xl overflow-hidden w-full shadow-md transition-shadow duraiton-300 hover:shadow-xl"
+  href={href}
+>
+  <div class="relative w-full aspect-video bg-black">
+    {thumbnail?.filename &&
+      <img
+        class="absolute inset-0 w-full h-full object-cover object-center"
+        src={thumbnail?.filename}
+        alt={thumbnail?.alt}
+      />
+    }
+  </div>
+  <span class="block font-bold text-lg p-5">
+    {name}
+  </span>
+</a>
